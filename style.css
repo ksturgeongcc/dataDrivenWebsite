@@ -1,0 +1,50 @@
+/* 
+    * = selector
+    padding = property
+    0 = value
+*/
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100vw;
+    height: 100vh;
+}
+header{
+    height: 20%;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main{
+    height: 60%;
+    background-color: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+footer{
+    height: 20%;
+    background-color: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* media queries */
+@media screen and (min-width: 991px) {
+
+    header{
+        background-color: bisque;
+    }
+    main{
+        background-color: aqua;
+    }
+    footer{
+        background-color: blueviolet;
+    }
+}
