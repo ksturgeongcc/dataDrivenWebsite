@@ -1,6 +1,7 @@
 <?php
+$_SESSION['name'] = 'Karen';
 $title = 'My first php variable';
-// $name = $_SESSION['karen'];
+$name = $_SESSION['name'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

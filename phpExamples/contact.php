@@ -1,6 +1,6 @@
 <?php
 $title = 'My first php variable';
-    $name = 'Karen';
+$name = 'Karen';
 ?>
 <!DOCTYPE html>
 <html lang="en">
