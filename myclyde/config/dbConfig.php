@@ -1,8 +1,8 @@
 <?php
 $hn = 'localhost';
 $un = 'student_admin';
-$pw = 'xzg0ht-XQp!iWlty';
-$db = 'my_clyde';
+$pw = 'fAy(zy@[td14*-1!';
+$db = 'myclyde';
 
 $conn = mysqli_connect($hn, $un, $pw, $db);
 if (!$conn){

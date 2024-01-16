@@ -30,12 +30,12 @@ if ($stmt = $conn->prepare('SELECT student_num, psw FROM student WHERE student_n
 
         } else {
             $errorMessage = 'Incorrect login details!';
-            header('Location: ../pages/shared/login.php'); // Redirect back to the login page
+            header('Location: ../login'); // Redirect back to the login page
 
         }
     } else {
         $errorMessage = 'Incorrect login details!';
-        header('Location: ../pages/shared/login.php'); // Redirect back to the login page
+        header('Location: ../login'); // Redirect back to the login page
 
     }
 

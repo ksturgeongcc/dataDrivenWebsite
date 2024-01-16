@@ -1,0 +1,4 @@
+RewriteEngine On
+   RewriteRule ^$ pages/shared/index.php [L]
+   RewriteRule ^login$ pages/shared/login.php [L]
+   RewriteRule ^register$ pages/shared/register.php [L]
