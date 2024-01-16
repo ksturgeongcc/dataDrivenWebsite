@@ -1,3 +1,6 @@
+<?php
+    define('BASE_PATH', 'http://localhost:8040/dataDrivenWebsite/myClyde/');
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
