@@ -7,7 +7,7 @@ session_start();
 $errorMessage = '';
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $conn->prepare('SELECT student_num, psw FROM student WHERE student_num = ?')) {
+if ($stmt = $conn->prepare('SELECT student_num, psw, admin FROM student WHERE student_num = ?')) {
     // Bind parameters (s = string, i = int, b = blob, etc), in our case the student_num is a string so we use "s"
     $stmt->bind_param('i', $_POST['student_num']);
     $stmt->execute();
@@ -15,7 +15,7 @@ if ($stmt = $conn->prepare('SELECT student_num, psw FROM student WHERE student_n
     $stmt->store_result();
     // If the student_num exists 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($student_num, $password);
+        $stmt->bind_result($student_num, $password, $admin);
         $stmt->fetch();
         // Account exists, now we verify the password.
         // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -25,8 +25,13 @@ if ($stmt = $conn->prepare('SELECT student_num, psw FROM student WHERE student_n
             session_regenerate_id();
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['student_num'] = $student_num;
-
-           header('Location: ../s/dashboard');
+            $_SESSION['admin'] = $admin;
+            if($admin == 0){
+                header('Location: ../s/dashboard');
+            }
+            else{
+                header('Location: ../a/dashboard');
+            }
 
         } else {
             $errorMessage = 'Incorrect login details!';

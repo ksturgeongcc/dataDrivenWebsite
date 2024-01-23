@@ -17,7 +17,7 @@ if ($stmt->num_rows > 0) {
 } else {
     $stmt->close();
     // Username doesnt exists, insert new account
-    $stmt = $conn->prepare("INSERT INTO student (student_num, firstname, surname, email, dob, address, postcode, psw) VALUES(?, ?, ?, ?, ?, ?, ?, ?);");
+    $stmt = $conn->prepare("INSERT INTO student (student_num, firstname, surname, email, dob, address, postcode, psw, admin) VALUES(?, ?, ?, ?, ?, ?, ?, ?, 0);");
   
    
     $password = password_hash($_POST['psw'], PASSWORD_DEFAULT);

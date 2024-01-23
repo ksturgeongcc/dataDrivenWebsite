@@ -1,4 +1,8 @@
+<?php
+session_start();
+  ?>
 <!-- component -->
+
 <script src="//unpkg.com/alpinejs" defer></script>
 <nav 
 class="z-0 relative" 
@@ -13,9 +17,27 @@ x-data="{open:false,menu:false, lokasi:false}">
           </a>
           <div class="hidden lg:block lg:ml-2">
             <div class="flex">
-              <a href="<?= BASE_PATH ?>welcome" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-gray-800 font-semibold hover:bg-yellow-500 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "> Home </a>
-              <a href="<?= BASE_PATH ?>login" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-gray-800 font-semibold hover:bg-yellow-500 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "> Login </a>
-              <a href="<?= BASE_PATH ?>register" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-gray-800 font-semibold hover:bg-yellow-500 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "> Register </a>
+            <?php if (!isset($_SESSION['loggedin'])): ?>
+                <a href="<?= BASE_PATH ?>welcome" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium transition duration-150 ease-in-out cursor-pointer focus:outline-none text-white focus:text-white  hover:bg-purple-900" >Home </a>
+                <a href="<?= BASE_PATH ?>login" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-white hover:bg-purple-900 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "> Login </a>
+                <a href="<?= BASE_PATH ?>register" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-white hover:bg-purple-900 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "> Register </a>
+              <?php else: ?>
+                <a href="<?= BASE_PATH ?>welcome" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-white hover:bg-purple-900 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "> Home </a>
+                    <?php if ($_SESSION['admin'] == 1): ?>
+                      <a href="<?= BASE_PATH ?>a/dashboard" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-white hover:bg-purple-900 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "> Dashboard </a>
+                      <a href="<?= BASE_PATH ?>a/manage" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-white hover:bg-purple-900 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "> Manage Students </a>
+                      <a href="<?= BASE_PATH ?>a/pending" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-white hover:bg-purple-900 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "> Pending Comments </a>
+                    <?php elseif ($_SESSION['admin'] == 0): ?>                      
+                      <a href="<?= BASE_PATH ?>s/dashboard" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-white hover:bg-purple-900 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "> Dashboard </a>
+                      <a href="<?= BASE_PATH ?>s/details" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-white hover:bg-purple-900 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "> My Details </a>
+                    <?php endif ?>
+                      <a href="<?= BASE_PATH ?>news" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-white hover:bg-purple-900 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "> News </a>
+                      <a href="<?= BASE_PATH ?>events" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-white hover:bg-purple-900 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "> events </a>
+                      <a href="<?= BASE_PATH ?>pages/shared/logout.php" class="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-white hover:bg-purple-900 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white focus:bg-gray-700 "> Logout </a>
+                    <?php endif ?>
+
+
+
             </div>
           </div>
         </div>
