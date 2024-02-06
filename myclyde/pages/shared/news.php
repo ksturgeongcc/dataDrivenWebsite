@@ -2,6 +2,7 @@
 include '../../config/dbConfig.php';
 include '../../partials/header.php';
 include '../../partials/navigation.php';
+$admin = $_SESSION['admin'];
 $news = $conn->prepare("SELECT
 news_id,
 title,
@@ -26,7 +27,13 @@ $news->bind_result($news_id, $title, $description, $added);
 <!-- ====== Cards Section Start -->
 <section class="pt-20 lg:pt-[120px] pb-10 lg:pb-20 bg-[#F3F4F6]">
    <div class="container">
+    <?php if($admin == 1) : ?>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Add news
+            </button>
+    <?php endif ?>
       <div class="flex flex-wrap -mx-4">
+        
         <!-- repeating card -->
         <?php while ($news->fetch()): ?>
          <div class="w-full md:w-1/2 xl:w-1/3 px-4">
