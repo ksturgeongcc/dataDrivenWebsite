@@ -10,5 +10,6 @@ RewriteEngine On
 
    # admin
    RewriteRule ^a/dashboard$ pages/admin/dashboard.php [L]
+   RewriteRule ^addEvent$ pages/admin/addEvent.php [L]
 
   

@@ -1,6 +1,6 @@
 <?php
-    define('BASE_PATH', 'http://localhost:8040/dataDrivenWebsite/myClyde/');
-    // define('BASE_PATH', 'http://localhost:8040/dataDrivenWebsite-2/myclyde/');
+    // define('BASE_PATH', 'http://localhost:8040/dataDrivenWebsite/myClyde/');
+    define('BASE_PATH', 'http://localhost:8040/dataDrivenWebsite-2/myclyde/');
     ?>
 <!DOCTYPE html>
 <html lang="en">
