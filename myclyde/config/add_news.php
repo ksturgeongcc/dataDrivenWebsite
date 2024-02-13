@@ -1,11 +1,11 @@
 <?php
-
 session_start();
+
     include 'dbConfig.php';
     
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $targetDir = "../assets/images/events/";
+        $targetDir = "../assets/images/news/";
         $uploadedFile = $targetDir . basename($_FILES["img_path"]["name"]);
         $uploadedDir = basename($_FILES["img_path"]["name"]);
         $uploadOk = 1;
@@ -15,7 +15,7 @@ session_start();
         if (file_exists($uploadedFile)) {
             $msg = "Sorry, file already exists.";
             $uploadOk = 0;
-            header("Location: ../addEvent?msg=$msg"); // Redirect back to the account page
+            header("Location: ../addNews?msg=$msg"); // Redirect back to the accpunt page
             exit();
         }
     
@@ -23,7 +23,7 @@ session_start();
         if ($_FILES["img_path"]["size"] > 2 * 1024 * 1024) {
             $msg = "Sorry, your file is too large.";
             $uploadOk = 0;
-            header("Location: ../addEvent?msg=$msg"); // Redirect back to the accpunt page
+            header("Location: ../addNews?msg=$msg"); // Redirect back to the accpunt page
             exit();
 
         }
@@ -33,7 +33,7 @@ session_start();
         if (!in_array($imageFileType, $allowedFormats)) {
             $msg = "Sorry, only JPG, JPEG, PNG, GIF, and PDF files are allowed.";
             $uploadOk = 0;
-            header("Location: ../addEvent?msg=$msg"); // Redirect back to the accpunt page
+            header("Location: ../addNews?msg=$msg"); // Redirect back to the accpunt page
             exit();
 
         }
@@ -41,7 +41,7 @@ session_start();
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
             $msg = "Sorry, your file was not uploaded.";
-            header("Location: ../addEvent?msg=$msg"); // Redirect back to the accpunt page
+            header("Location: ../addNews?msg=$msg"); // Redirect back to the accpunt page
             exit();
 
         } else {
@@ -55,20 +55,20 @@ session_start();
     
                 // Update the 'img_path' column in the 'users' table for the specific user
               
-                $updateQuery = $conn->prepare("INSERT INTO event (added_by, date, description, img_path, added_on) VALUES(?, ?, ?, ?, NOW());");
-                $updateQuery->bind_param('ssss', $_POST['added_by'], $_POST['date'], $_POST['description'], $imgPath);
+                $updateQuery = $conn->prepare("INSERT INTO news (title, description, img_path, added_by, added_on) VALUES(?, ?, ?, ?, NOW() );");
+                $updateQuery->bind_param('ssss', $_POST['title'], $_POST['description'], $imgPath, $_POST['added_by']);
    
     
 
 
                 if ($updateQuery->execute()) {
                     $msg = "Your profile picture has been successfully uploaded";
-                    header("Location: ../events?msg=$msg"); // Redirect back to the accpunt page
+                    header("Location: ../news?msg=$msg"); // Redirect back to the accpunt page
                     exit();
 
                 } else {
                     $msg =  "Sorry, there was an error updating the database.";
-                    header("Location: ../addEvent?msg=$msg "); // Redirect back to the accpunt page
+                    header("Location: ../addNews?msg=$msg "); // Redirect back to the accpunt page
                     exit();
 
                 }
@@ -77,7 +77,7 @@ session_start();
                 $conn->close();
             } else {
                 $msg = "Sorry, there was an error uploading your file.";
-                header("Location: ../addEvent?msg=$msg"); // Redirect back to the accpunt page
+                header("Location: ../addNews?msg=$msg"); // Redirect back to the accpunt page
                 exit();
 
             }

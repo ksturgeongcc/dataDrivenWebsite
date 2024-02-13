@@ -10,6 +10,9 @@ RewriteEngine On
 
    # admin
    RewriteRule ^a/dashboard$ pages/admin/dashboard.php [L]
+   RewriteRule ^a/manage$ pages/admin/manage.php [L]
+   RewriteRule ^a/pending$ pages/admin/pending.php [L]
    RewriteRule ^addEvent$ pages/admin/addEvent.php [L]
+   RewriteRule ^addNews$ pages/admin/addNews.php [L]
 
   

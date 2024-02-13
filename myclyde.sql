@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2024 at 12:11 AM
+-- Generation Time: Feb 13, 2024 at 01:53 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `myclyde`
+-- Database: `my_clyde`
 --
 
 -- --------------------------------------------------------
@@ -73,19 +73,22 @@ CREATE TABLE `event` (
   `date` datetime DEFAULT NULL,
   `description` text DEFAULT NULL,
   `added_on` datetime DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL
+  `updated_by` int(11) DEFAULT NULL,
+  `img_path` varchar(155) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`events_id`, `added_by`, `date`, `description`, `added_on`, `updated_by`) VALUES
-(1, 1, '2023-12-15 10:00:00', 'Welcome Orientation', '2023-12-10 08:30:00', NULL),
-(2, 1, '2023-12-18 14:30:00', 'Guest Lecture on Science and Technology', '2023-12-12 09:45:00', NULL),
-(3, 1, '2023-12-20 09:00:00', 'Sports Day Kick-off', '2023-12-15 11:20:00', NULL),
-(4, 1, '2023-12-22 18:00:00', 'Annual Talent Show', '2023-12-18 15:10:00', NULL),
-(5, 1, '2023-12-25 12:30:00', 'Holiday Celebration', '2023-12-20 14:55:00', NULL);
+INSERT INTO `event` (`events_id`, `added_by`, `date`, `description`, `added_on`, `updated_by`, `img_path`) VALUES
+(1, 1, '2023-12-15 10:00:00', 'Welcome Orientation', '2023-12-10 08:30:00', NULL, 'event_one.jpg'),
+(2, 1, '2023-12-18 14:30:00', 'Guest Lecture on Science and Technology', '2023-12-12 09:45:00', NULL, 'event_two.jpg'),
+(3, 1, '2023-12-20 09:00:00', 'Sports Day Kick-off', '2023-12-15 11:20:00', NULL, 'event_three.jpg'),
+(4, 1, '2023-12-22 18:00:00', 'Annual Talent Show', '2023-12-18 15:10:00', NULL, 'event_four.jpg'),
+(5, 1, '2023-12-25 12:30:00', 'Holiday Celebration', '2023-12-20 14:55:00', NULL, 'event_one.jpg'),
+(23, 12345, '2024-03-08 00:06:00', 'ad', '2024-02-13 00:06:44', NULL, 'myclydelogo.PNG'),
+(24, 12345, '2024-02-04 00:07:00', 'ffff', '2024-02-13 00:07:49', NULL, 'screenshot1.PNG');
 
 -- --------------------------------------------------------
 
@@ -98,19 +101,21 @@ CREATE TABLE `news` (
   `title` varchar(32) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `added_on` datetime DEFAULT NULL,
-  `added_by` int(11) DEFAULT NULL
+  `added_by` int(11) DEFAULT NULL,
+  `img_path` varchar(155) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `news`
 --
 
-INSERT INTO `news` (`news_id`, `title`, `description`, `added_on`, `added_by`) VALUES
-(1, 'New Campus Initiatives', 'Exciting new initiatives are coming to our campus to enhance the overall student experience.', '2023-12-15 09:15:00', 1),
-(2, 'Research Symposium Announcement', 'The annual research symposium is scheduled for next month. Submit your abstracts and be a part of this intellectual event.', '2023-12-18 14:00:00', 1),
-(3, 'Career Fair Success', 'Our recent career fair was a tremendous success, with students securing internships and job opportunities from top companies.', '2023-12-20 11:30:00', 1),
-(4, 'Upcoming Alumni Reunion', 'Calling all alumni! Don’t miss the upcoming reunion on January 5th. Reconnect with old friends and share your success stories.', '2023-12-22 17:45:00', 1),
-(5, 'Student Achievements', 'Congratulations to our students for their outstanding achievements in various fields. We are proud of your hard work and dedication!', '2023-12-25 13:45:00', 1);
+INSERT INTO `news` (`news_id`, `title`, `description`, `added_on`, `added_by`, `img_path`) VALUES
+(1, 'New Campus Initiatives', 'Exciting new initiatives are coming to our campus to enhance the overall student experience.', '2023-12-15 09:15:00', 1, 'news_one.jpg'),
+(2, 'Research Symposium Announcement', 'The annual research symposium is scheduled for next month. Submit your abstracts and be a part of this intellectual event.', '2023-12-18 14:00:00', 1, 'news_two.jpg'),
+(3, 'Career Fair Success', 'Our recent career fair was a tremendous success, with students securing internships and job opportunities from top companies.', '2023-12-20 11:30:00', 1, 'news_three.jpg'),
+(4, 'Upcoming Alumni Reunion', 'Calling all alumni! Don’t miss the upcoming reunion on January 5th. Reconnect with old friends and share your success stories.', '2023-12-22 17:45:00', 1, 'news_four.jpg'),
+(5, 'Student Achievements', 'Congratulations to our students for their outstanding achievements in various fields. We are proud of your hard work and dedication!', '2023-12-25 13:45:00', 1, 'news_one.jpg'),
+(6, 'asdfasdfasdfasdf', 'df', '2024-02-13 00:04:39', 12345, 'screenshot1.PNG');
 
 -- --------------------------------------------------------
 
@@ -128,16 +133,19 @@ CREATE TABLE `student` (
   `dob` date DEFAULT NULL,
   `psw` varchar(255) DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
-  `fk_course` int(11) DEFAULT NULL
+  `fk_course` int(11) DEFAULT NULL,
+  `admin` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`student_num`, `firstname`, `surname`, `email`, `address`, `postcode`, `dob`, `psw`, `active`, `fk_course`) VALUES
-(123456, 'Santa', 'Clause', 'santa@email.com', '123', 'g15EH', '2023-12-06', '$2y$10$tFsxSzE4JyRWk/lxlctLyuQFyDOoq4g9W31BzBt.mxiWT9WbOyYCS', 1, 2),
-(12345678, 'Karen', 'Sturgeon', 'asdf@eamil.com', '123345', '1234', '2023-12-02', '$2y$10$tFsxSzE4JyRWk/lxlctLyuQFyDOoq4g9W31BzBt.mxiWT9WbOyYCS', 1, 2);
+INSERT INTO `student` (`student_num`, `firstname`, `surname`, `email`, `address`, `postcode`, `dob`, `psw`, `active`, `fk_course`, `admin`) VALUES
+(2000, 'adsf', 'adf', 'adf@email.com', 'asdf', 'adsf', '2024-01-19', '$2y$10$UctyyFpqsrZlrsgQWQdyL.T4Yf1FEDc/2ZS7O975vEIhOzVP6nj2i', NULL, NULL, 1),
+(12345, 'admin', 'admin', 'admin@email.com', 'adfadsasdf', 'adf', '2024-01-13', '$2y$10$6DyuDBpkrdQEVcKlnaSLJedotEd2G3fWAtwulll92Jfc3E/HCkLs.', NULL, NULL, 1),
+(1234567, 'Santa', 'Clause', 'santa@northpole.com', 'The North Pole', 'ELF 1234', '2023-12-25', '$2y$10$tFsxSzE4JyRWk/lxlctLyuQFyDOoq4g9W31BzBt.mxiWT9WbOyYCS', 1, 2, 0),
+(12345678, 'Karen', 'Sturgeon', 'asdf@eamil.com', '123', '123', '2023-12-02', '$2y$10$tFsxSzE4JyRWk/lxlctLyuQFyDOoq4g9W31BzBt.mxiWT9WbOyYCS', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -148,19 +156,8 @@ INSERT INTO `student` (`student_num`, `firstname`, `surname`, `email`, `address`
 CREATE TABLE `student_comment` (
   `nc_id` int(11) NOT NULL,
   `fk_news_id` int(11) DEFAULT NULL,
-  `student_num` int(11) DEFAULT NULL,
-  `comment` varchar(500) NOT NULL,
-  `active` tinyint(4) NOT NULL
+  `student_email` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `student_comment`
---
-
-INSERT INTO `student_comment` (`nc_id`, `fk_news_id`, `student_num`, `comment`, `active`) VALUES
-(1, 1, 12345678, 'adfadf', 1),
-(2, 1, 12345678, 'comment', 0),
-(3, 2, 12345678, 'post a comment on news item 2', 0);
 
 -- --------------------------------------------------------
 
@@ -181,9 +178,10 @@ CREATE TABLE `student_enrolment` (
 
 INSERT INTO `student_enrolment` (`enrol_id`, `date`, `fk_unit`, `fk_student`) VALUES
 (1, '2023-12-05', 1, 12345678),
-(2, '2023-12-10', 3, 12345678),
-(5, '2023-12-04', 5, 123456),
-(6, '2023-12-04', 4, 123456);
+(2, '2023-12-04', 3, 12345678),
+(3, '2023-12-03', 2, 1234567),
+(4, '2023-12-07', 4, 1234567),
+(5, '2023-12-06', 5, 12345678);
 
 -- --------------------------------------------------------
 
@@ -278,31 +276,31 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `events_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `events_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `student_comment`
 --
 ALTER TABLE `student_comment`
-  MODIFY `nc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `nc_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `student_enrolment`
 --
 ALTER TABLE `student_enrolment`
-  MODIFY `enrol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `enrol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `unit`

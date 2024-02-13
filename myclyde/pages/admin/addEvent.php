@@ -4,7 +4,7 @@
    
     $msg = isset($_GET['msg']) ? $_GET['msg'] : null;
 ?>
-<div class="bg-indigo-100 flex justify-center items-center">
+<div class="bg-indigo-100 flex justify-center items-center bg-cover">
 	<div class="lg:w-2/5 md:w-1/2 w-2/3 mt-20 mb-20">
     <?php if (isset($msg)): ?>
         <div class="mb-4 text-red-500">

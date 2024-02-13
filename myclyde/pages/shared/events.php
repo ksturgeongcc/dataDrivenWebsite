@@ -1,9 +1,14 @@
 <?php
+
 include '../../config/dbConfig.php';
 include '../../partials/header.php';
 include '../../partials/navigation.php';
+
+
+
 $admin = $_SESSION['admin'];
-$news = $conn->prepare("SELECT
+
+$events = $conn->prepare("SELECT
 events_id,
 date,
 description,
@@ -11,9 +16,9 @@ img_path
 
 from event
 ");
-$news->execute();
-$news->store_result();
-$news->bind_result($eventId, $date, $description, $img);
+$events->execute();
+$events->store_result();
+$events->bind_result($eventId, $date, $description, $img);
 ?>
 <!-- component -->
 <link rel="stylesheet" href="https://cdn.tailgrids.com/tailgrids-fallback.css" />
@@ -29,7 +34,7 @@ $news->bind_result($eventId, $date, $description, $img);
       <div class="flex flex-wrap -mx-4">
         
         <!-- repeating card -->
-        <?php while ($news->fetch()): ?>
+        <?php while ($events->fetch()): ?>
            <?php $formattedDate = DateTime::createFromFormat('Y-m-d H:i:s', $date)->format('l jS \of F Y h:i:s A') ?>
 
          <div class="w-full md:w-1/2 xl:w-1/3 px-4">
